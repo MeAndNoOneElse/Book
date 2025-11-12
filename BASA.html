@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A-Frame: Два куба в клетке</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@4.0.1/dist/aframe-physics-system.min.js"></script>
+</head>
+<body>
+<a-scene physics>
+    <!-- Камера -->
+    <a-entity camera="userHeight: 1.6" position="0 1.6 4" wasd-controls look-controls></a-entity>
+
+    <!-- Освещение -->
+    <a-light type="ambient" color="#BBB"></a-light>
+    <a-light type="directional" color="#FFF" intensity="0.6" position="-1 1 1"></a-light>
+
+    <!-- Клетка (сетка) -->
+    <a-entity id="grid" position="0 0 0">
+        <a-entity geometry="primitive: plane; width: 10; height: 10" material="color: #CCC; opacity: 0.5; transparent: true" rotation="-90 0 0"></a-entity>
+        <a-entity geometry="primitive: box; width: 10; height: 0.1; depth: 10" material="color: #333" position="0 -0.05 0"></a-entity>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 10" material="color: #333" position="-5 0.5 0"></a-entity>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 10" material="color: #333" position="5 0.5 0"></a-entity>
+        <a-entity geometry="primitive: box; width: 10; height: 1; depth: 0.1" material="color: #333" position="0 0.5 -5"></a-entity>
+        <a-entity geometry="primitive: box; width: 10; height: 1; depth: 0.1" material="color: #333" position="0 0.5 5"></a-entity>
+    </a-entity>
+
+    <!-- Куб 1 -->
+    <a-entity id="cube1" geometry="primitive: box; width: 1; height: 1; depth: 1" material="color: #FF0000" position="-1 0.5 0" dynamic-body></a-entity>
+
+    <!-- Куб 2 -->
+    <a-entity id="cube2" geometry="primitive: box; width: 1; height: 1; depth: 1" material="color: #0000FF" position="1 0.5 0" dynamic-body></a-entity>
+
+    <!-- Контроллеры для перемещения кубов -->
+    <a-entity cursor="rayOrigin: mouse" raycaster="objects: [dynamic-body]"></a-entity>
+</a-scene>
+</body>
+</html>
